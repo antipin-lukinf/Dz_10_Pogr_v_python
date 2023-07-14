@@ -12,7 +12,7 @@
 
 
 class Rectangle:
-    def __init__(self, long, width=0):
+    def __init__(self, long, width=None):
         self.long = long
         self.width = width
 
@@ -31,8 +31,8 @@ class Rectangle:
             return self.long * self.width
 
 
-rect = Rectangle(2)
-pl = Rectangle(2)
+rect = Rectangle(2, 1)
+pl = Rectangle(2, 1)
 
 print(rect.perimeter())
 print(pl.plosh())
