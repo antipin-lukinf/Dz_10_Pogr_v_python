@@ -21,7 +21,8 @@ class Card:
 
 
 class Bankomat:
-    many = 1000
+    _MANY = 1000
+    #many = 1000
     def choise_bank(self):
         bank = input('Каким банкоматом хотите воспользоваться? (сбер, открытие или россельхоз) : ')
         if bank.lower() in _BANKOMAT:
@@ -30,36 +31,41 @@ class Bankomat:
     def operation(self):
 
         while True:
-            input_oper = input('Введите тип операции (снять, положить, перевести, выйти)')
+            input_oper = input('Введите тип операции (снять, положить, выйти)')
             # input_summ_operation = int(input('Введите сумму операции'))
 
             if input_oper.lower() == 'снять':
-                oper = self._out(self.many)
+                oper = self._out()
                 # return oper
             if input_oper.lower() == 'положить':
                 oper = self._in()
                 # return oper
-            if input_oper.lower() == 'перевести':
-                oper = self._trans()
 
             if input_oper.lower() == 'выйти':
 
                 break
         return oper
 
-    def _out(self, many):
-        self.many = many
+    def _out(self):
+        #self.many = many
         input_summ_operation = int(input('Введите сумму операции'))
-        # self.input_summ_operation = input_summ_operation
-        many -= input_summ_operation
-        print(many)
-        return many
+        if input_summ_operation <= self._MANY:
+            self._MANY -= input_summ_operation
+        else:
+            print('Не достаточно средств на карте')
+
+        print(self._MANY)
+        return self._MANY
 
     def _in(self):
-        pass
 
-    def _trans(self):
-        pass
+        input_summ_operation = int(input('Введите сумму операции'))
+        self._MANY += input_summ_operation
+
+        print(self._MANY)
+        return self._MANY
+
+
 
 
 def main():
